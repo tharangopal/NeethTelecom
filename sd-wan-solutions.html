@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SD-WAN Solutions - Neeth Telecom</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            color: #1f2937;
+            background-color: #ffffff;
+        }
+
+        /* Sticky Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: linear-gradient(135deg, #001f3f 0%, #003d7a 100%);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container-custom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            letter-spacing: 0.3px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #06b6d4;
+        }
+
+        .support-badge {
+            background-color: rgba(6, 182, 212, 0.2);
+            color: #06b6d4;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: 1px solid #06b6d4;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            background-color: #f8fafc;
+            padding: 20px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .breadcrumb a {
+            color: #06b6d4;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .service-hero {
+            background: linear-gradient(135deg, rgba(0, 31, 63, 0.85) 0%, rgba(0, 61, 122, 0.85) 50%, rgba(0, 71, 163, 0.85) 100%), url('images/sw-wan.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #ffffff;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .service-hero h1 {
+            font-size: 52px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .service-hero p {
+            font-size: 18px;
+            color: #e0f2fe;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Content Section */
+        .service-content {
+            padding: 80px 20px;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-details h2 {
+            font-size: 40px;
+            font-weight: 800;
+            color: #001f3f;
+            margin-bottom: 30px;
+            line-height: 1.2;
+        }
+
+        .service-details p {
+            font-size: 16px;
+            color: #475569;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .features-list li {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 15px;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .features-list .icon {
+            color: #06b6d4;
+            font-size: 20px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .service-image {
+            position: relative;
+            height: 450px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Benefits Section */
+        .benefits-section {
+            background-color: #f8fafc;
+            padding: 80px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header h2 {
+            font-size: 44px;
+            font-weight: 800;
+            color: #001f3f;
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: #64748b;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .benefit-card {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.1);
+            border-color: #06b6d4;
+        }
+
+        .benefit-icon {
+            font-size: 48px;
+            color: #06b6d4;
+            margin-bottom: 20px;
+        }
+
+        .benefit-card h3 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #001f3f;
+            margin-bottom: 15px;
+        }
+
+        .benefit-card p {
+            font-size: 15px;
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #001f3f 0%, #003d7a 100%);
+            color: #ffffff;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .cta-content h2 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            font-size: 18px;
+            color: #e0f2fe;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .btn-primary {
+            background-color: #06b6d4;
+            color: #001f3f;
+            padding: 16px 40px;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.3);
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: #06a3cc;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(6, 182, 212, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #001f3f 0%, #003d7a 100%);
+            color: #ffffff;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(6, 182, 212, 0.2);
+        }
+
+        footer p {
+            font-size: 14px;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .service-hero h1 {
+                font-size: 36px;
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .service-details h2 {
+                font-size: 32px;
+            }
+
+            .service-image {
+                height: 300px;
+            }
+
+            .section-header h2 {
+                font-size: 32px;
+            }
+
+            .cta-content h2 {
+                font-size: 32px;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-hero {
+                padding: 60px 20px;
+            }
+
+            .service-hero h1 {
+                font-size: 28px;
+            }
+
+            .service-content,
+            .benefits-section,
+            .cta-section {
+                padding: 50px 20px;
+            }
+
+            .service-details h2 {
+                font-size: 24px;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container-custom">
+            <nav>
+                <a href="index.html" class="logo">
+                    <img src="images/logo.png" alt="Neeth Telecom Logo">
+                    <span>Neeth Telecom</span>
+                </a>
+                <ul class="nav-links">
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#about">About Us</a></li>
+                    <li><a href="index.html#portfolio">Portfolio</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                    <li class="support-badge">
+                        <i class="fas fa-headset"></i> 24/7 Support
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container-custom">
+            <div style="margin-top: 10px;">
+                <a href="index.html#services" style="color: #06b6d4; text-decoration: none; font-weight: 500; font-size: 14px;">
+                    <i class="fas fa-arrow-left"></i> Back to Services
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Hero Section -->
+    <section class="service-hero">
+        <div class="container-custom">
+            <h1>SD-WAN Solutions</h1>
+            <p>Software-Defined Wide Area Network technology for optimized performance and reduced costs</p>
+        </div>
+    </section>
+
+    <!-- Service Content -->
+    <section class="service-content">
+        <div class="content-grid">
+            <div class="service-details">
+                <h2>Next-Generation Network Technology</h2>
+                <p>Optimize your network performance and reduce operational costs with Software-Defined WAN technology. Our SD-WAN solutions provide intelligent traffic routing, improved application performance, and enhanced security across all your locations.</p>
+                
+                <ul class="features-list">
+                    <li>
+                        <i class="fas fa-cloud icon"></i>
+                        <span><strong>Cloud-Native Architecture:</strong> Modern SD-WAN designed for cloud-first enterprises with seamless integration</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-tachometer-alt icon"></i>
+                        <span><strong>Performance Optimization:</strong> Intelligent routing ensures optimal performance for business-critical applications</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-dollar-sign icon"></i>
+                        <span><strong>Cost Reduction:</strong> Reduce bandwidth costs and operational expenses with efficient network utilization</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-lock icon"></i>
+                        <span><strong>Enhanced Security:</strong> Built-in security policies and end-to-end encryption for all traffic</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-expand-arrows-alt icon"></i>
+                        <span><strong>Scalability:</strong> Easily scale to support new locations and growing bandwidth demands</span>
+                    </li>
+                    <li>
+                        <i class="fas fa-sliders-h icon"></i>
+                        <span><strong>Centralized Management:</strong> Single pane of glass for managing all network locations and policies</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="service-image">
+                <img src="images/sw-wan.jpg" alt="SD-WAN Network Solutions">
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section">
+        <div class="container-custom">
+            <div class="section-header">
+                <h2>Why Choose Our SD-WAN Solutions?</h2>
+                <p>Enterprise-grade network optimization for modern businesses</p>
+            </div>
+
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Faster Deployment</h3>
+                    <p>Quick deployment with minimal disruption to existing network infrastructure</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Improved Productivity</h3>
+                    <p>Better application performance leads to increased user productivity and satisfaction</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Advanced Security</h3>
+                    <p>Multi-layer security with threat detection and prevention capabilities</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Network Visibility</h3>
+                    <p>Complete visibility into network traffic and application performance metrics</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Remote Work Ready</h3>
+                    <p>Secure and optimized connectivity for distributed workforce and remote offices</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Dedicated support team available around the clock for any issues or questions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>Transform Your Network with SD-WAN</h2>
+            <p>Contact us today to learn how SD-WAN can optimize your network performance, reduce costs, and enhance security across your organization.</p>
+            <a href="index.html#contact" class="btn-primary">Request a Quote</a>
+        </div>
+    </section>
+
+    <!-- Back to Services Section -->
+    <section style="padding: 60px 20px; background-color: #ffffff; text-align: center;">
+        <div class="container-custom">
+            <p style="color: #475569; font-size: 16px; margin-bottom: 20px;">Want to explore other services?</p>
+            <a href="index.html#services" style="display: inline-block; background-color: #001f3f; color: #ffffff; padding: 12px 30px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+                <i class="fas fa-arrow-left"></i> Back to All Services
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container-custom">
+            <p>&copy; 2024 Neeth Telecom. All rights reserved. | Licensed & Insured Enterprise Telecommunications Solutions</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.benefit-card, .service-details, .service-image').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
