@@ -531,6 +531,44 @@
             transform: translateY(-4px);
         }
 
+        /* QR Code Styles */
+        #qrcode {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+        }
+
+        #qrcode canvas {
+            max-width: 300px;
+            height: auto;
+        }
+
+        .qr-section {
+            background: linear-gradient(135deg, #f0f9fc 0%, #e0f7ff 100%);
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+            border: 2px solid #cffafe;
+        }
+
+        .qr-section h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #001f3f;
+            margin-bottom: 10px;
+        }
+
+        .qr-section p {
+            font-size: 15px;
+            color: #0369a1;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
         /* Footer */
         footer {
             background: linear-gradient(135deg, #001f3f 0%, #003d7a 100%);
@@ -871,7 +909,7 @@
             <div class="contact-content">
                 <div class="contact-form">
                     <h3>Request a Quote</h3>
-                    <form>
+                    <form action="https://formspree.io/f/xrejzban" method="POST">
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name" required>
@@ -898,6 +936,13 @@
                         </div>
                         <button type="submit" class="btn-primary" style="width: 100%;">Submit Request</button>
                     </form>
+
+                    <!-- QR Code Section -->
+                    <div class="qr-section">
+                        <h3>Scan to Save Contact</h3>
+                        <p>Add Neeth Telecom to your contacts instantly</p>
+                        <div id="qrcode"></div>
+                    </div>
                 </div>
 
                 <div class="contact-info">
@@ -972,6 +1017,7 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <script>
         // Image carousel for technicians
         function initCarousel() {
@@ -1003,12 +1049,23 @@
             });
         });
 
-        // Form submission
-        document.querySelector('form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your interest! We will contact you shortly.');
-            this.reset();
-        });
+        // Form submission with success feedback
+        const form = document.querySelector('form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                // Let Formspree handle it, but add user feedback
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Sending...';
+                submitBtn.disabled = true;
+                
+                // Reset after 2 seconds (Formspree will redirect after success)
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                }, 2000);
+            });
+        }
 
         // Add animation on scroll
         const observerOptions = {
@@ -1031,6 +1088,28 @@
             el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
             observer.observe(el);
         });
+
+        // Generate QR Code with contact information
+        const contactInfo = `BEGIN:VCARD
+VERSION:3.0
+FN:Neeth Telecom
+ORG:Neeth Telecom
+TEL;TYPE=WORK,VOICE:+1-780-884-7685
+URL:https://tharangopal.github.io/NeethTelecom/
+ADR;TYPE=WORK:;;150 Pickering Crescent;Pickering;ON;L1V 1X2;Canada
+PHOTO;TYPE=JPEG;VALUE=URI:https://tharangopal.github.io/NeethTelecom/images/logo.png
+END:VCARD`;
+
+        if (document.getElementById('qrcode')) {
+            const qr = new QRCode(document.getElementById('qrcode'), {
+                text: contactInfo,
+                width: 300,
+                height: 300,
+                colorDark: '#001f3f',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.M
+            });
+        }
     </script>
 </body>
 </html>
